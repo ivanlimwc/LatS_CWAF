@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#custom additions made by developer
+.idea/
+data/raw
+
+
+
+
+
+
