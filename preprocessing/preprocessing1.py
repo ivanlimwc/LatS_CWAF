@@ -39,10 +39,12 @@ def merge_all_files_v1_v2():
     df_19_20_v2 = pd.read_csv("../data/raw/rds_dev_19_20_cwaf_vs_nofeedback_v2.csv")
     df_20_21_v2 = pd.read_csv("../data/raw/rds_dev_20_21_cwaf_vs_nofeedback_v2.csv")
     df_21_22_v2 = pd.read_csv("../data/raw/rds_dev_21_22_cwaf_vs_nofeedback_v2.csv")
+    df_21_22_v2_new = pd.read_csv("../data/raw/rds_dev_PSABTZFT_ 21_22_cwaf_vs_nofeedback_v2.csv")
     df_19_v2 = pd.read_csv("../data/raw/rds_dev_19_cwaf_vs_nofeedback_v2.csv")
     df_20_v2 = pd.read_csv("../data/raw/rds_dev_20_cwaf_vs_nofeedback_v2.csv")
     df_21_v2 = pd.read_csv("../data/raw/rds_dev_21_cwaf_vs_nofeedback_v2.csv")
     df_22_v2 = pd.read_csv("../data/raw/rds_dev_22_cwaf_vs_nofeedback_v2.csv")
+    df_22_v2_new = pd.read_csv("../data/raw/rds_dev_PSABTZFT_22_cwaf_vs_nofeedback_v2.csv")
 
     psa_info = pd.read_csv("../data/raw/rds_dev_PSA_cwaf_vs_nofeedback_v1_v2.csv")
 
@@ -80,10 +82,12 @@ def merge_all_files_v1_v2():
     df_19_20_v2 = df_19_20_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
     df_20_21_v2 = df_20_21_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
     df_21_22_v2 = df_21_22_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
+    df_21_22_v2_new = df_21_22_v2_new.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
     df_19_v2 = df_19_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
     df_20_v2 = df_20_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
     df_21_v2 = df_21_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
     df_22_v2 = df_22_v2.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
+    df_22_v2_new = df_22_v2_new.merge(psa_info, how='left', on=['sequence_id', 'problem_id'])
 
     df_08_09_v1['academic_year'] = 'v1_08_09'
     df_09_10_v1['academic_year'] = 'v1_09_10'
@@ -118,10 +122,12 @@ def merge_all_files_v1_v2():
     df_19_20_v2['academic_year'] = 'v2_19_20'
     df_20_21_v2['academic_year'] = 'v2_20_21'
     df_21_22_v2['academic_year'] = 'v2_21_22'
+    df_21_22_v2_new['academic_year'] = 'v2_21_22'
     df_19_v2['academic_year'] = 'v2_19_summer'
     df_20_v2['academic_year'] = 'v2_20_summer'
     df_21_v2['academic_year'] = 'v2_21_summer'
     df_22_v2['academic_year'] = 'v2_22_summer'
+    df_22_v2_new['academic_year'] = 'v2_22_summer'
 
     df_v1_ = pd.concat([
         df_08_09_v1, df_09_10_v1, df_10_11_v1, df_11_12_v1, df_12_13_v1, df_13_14_v1, df_14_15_v1, df_15_16_v1, df_16_17_v1,
@@ -130,7 +136,8 @@ def merge_all_files_v1_v2():
     ], ignore_index=True)
 
     df_v2_ = pd.concat([
-        df_18_19_v2, df_19_20_v2, df_20_21_v2, df_21_22_v2, df_19_v2, df_20_v2, df_21_v2, df_22_v2
+        df_18_19_v2, df_19_20_v2, df_20_21_v2, df_21_22_v2, df_21_22_v2_new, df_19_v2, df_20_v2, df_21_v2,
+        df_22_v2, df_22_v2_new
     ], ignore_index=True)
 
     return df_v1_, df_v2_
