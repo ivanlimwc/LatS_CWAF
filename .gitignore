@@ -130,8 +130,8 @@ dmypy.json
 
 #custom additions made by developer
 .idea/
-data/raw
-
+data/raw/*
+data/processed0.1/*
 
 
 
