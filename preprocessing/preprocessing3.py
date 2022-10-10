@@ -1,6 +1,6 @@
 import pandas as pd
 
-df_v2_new = pd.read_csv("../data/processed0.2/motivational_v2_new.csv")
+df_v2_new = pd.read_csv("../data/processed0.2/cwaf_v2_new.csv")
 
 df_v2_new = df_v2_new.loc[df_v2_new.psa_id == "PSABTZFT"]
 

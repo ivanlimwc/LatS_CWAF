@@ -132,8 +132,8 @@ df_v2_ = df_v2[['problem_log_id', 'assignment_id', 'problem_id', 'continuous_sco
                 'section_names', 'array_agg', 'control_treatments', 'mastery', 'skb_mastery_count',
                 'wheel_spinning', 'skb_problem_count']]
 
-df_v1_.to_csv("../data/processed0.2/motivational_v1_new.csv", index=False)
-df_v2_.to_csv("../data/processed0.2/motivational_v2_new.csv", index=False)
+df_v1_.to_csv("../data/processed0.2/cwaf_v1_new.csv", index=False)
+df_v2_.to_csv("../data/processed0.2/cwaf_v2_new.csv", index=False)
 
 print(df_v1_.groupby(['psa_id', 'control_treatments']).size().reset_index(name='frequency'))
 print(df_v2_.groupby(['psa_id', 'control_treatments']).size().reset_index(name='frequency'))

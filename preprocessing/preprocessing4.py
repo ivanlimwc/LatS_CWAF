@@ -58,7 +58,7 @@ repeaters = counting_psa_user_pairs.loc[counting_psa_user_pairs.frequency > 1]
 # studetns likely got randomized for the first time for the PSA
 
 counting_class_asignmetn_user_counts = counting_class_asignmetn_user_counts[['psa_id', 'assignment_id', 'user_id']]
-counting_class_asignmetn_user_counts.sort_values(by=['psa_id', 'assignment_id', 'user_id'], inplace=True)
+counting_class_asignmetn_user_counts.sort_values(by=['assignment_id', 'psa_id', 'user_id'], inplace=True)
 
 counting_psa_user_pairs_ = counting_class_asignmetn_user_counts.groupby(['psa_id', 'user_id']).size().reset_index(
     name="frequency")
@@ -92,7 +92,7 @@ repeaters__ = counting_psa_user_pairs__.loc[counting_psa_user_pairs__.frequency 
 
 final_df_v1_v2_clean2 = final_df_v1_v2_clean1.merge(counting_class_asignmetn_user_counts, how='inner',
                                                     on=['assignment_id', 'user_id'])
-final_df_v1_v2_clean2.to_csv("../data/processed0.2/cwaf_v1_v2_plogs_final.csv")
+final_df_v1_v2_clean2.to_csv("../data/processed0.2/cwaf_v1_v2_plogs_final.csv", index=False)
 
 print("=============================================================================================================")
 print("All")
@@ -175,8 +175,10 @@ final_df_v1_v2_clean2_CWA_count.sort_values(by=['psa_id', 'problem_id', 'CWA_fre
 # final_df_v1_v2_clean2_CWA_count.drop_duplicates(subset=['problem_id', 'answer_text'], keep='first', inplace=True)
 final_df_v1_v2_clean2_CWA_count = final_df_v1_v2_clean2_CWA_count.loc[
     ~(final_df_v1_v2_clean2_CWA_count.is_correct == True)]
+
+# final_df_v1_v2_clean2_CWA_count.to_csv("../data/processed0.2/core_cwa_grouping.csv", index=False)
 final_df_v1_v2_clean2_CWA_count__ = final_df_v1_v2_clean2_CWA_count.loc[
-    ((final_df_v1_v2_clean2_CWA_count.CWA_frequency >= 5) &
+    ((final_df_v1_v2_clean2_CWA_count.CWA_frequency >= 10) &
      (final_df_v1_v2_clean2_CWA_count.section_names == '{"S2 [treatment2]"}'))]
 final_df_v1_v2_clean2_CWA_count__.reset_index(drop=True, inplace=True)
 
@@ -185,4 +187,5 @@ final_df_v1_v2_clean2_CWA_count__.is_correct.fillna(-1, inplace=True)
 final_df_grouping = final_df_v1_v2_clean2_CWA_count__.groupby(
     ['psa_id', 'section_names', 'problem_id', 'is_correct']).agg({'CWA_frequency': ['sum', 'count']}).reset_index()
 
-final_df_grouping.to_csv("../data/processed0.2/cwa_grouping.csv")
+# final_df_grouping.to_csv("../data/processed0.2/cwa_grouping_5.csv", index=False)
+# final_df_grouping.to_csv("../data/processed0.2/cwa_grouping_10.csv", index=False)
